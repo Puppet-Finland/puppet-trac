@@ -9,8 +9,10 @@ class trac::config::xmlrpc
     $projectname
 )
 {
+    include trac::params
+
     file { 'trac-xmlrpcplugin-directory':
-        name => '/usr/local/lib/python2.6/dist-packages/xmlrpcplugin',
+        name => "/usr/local/lib/python${::trac::params::python_version}/dist-packages/xmlrpcplugin",
         owner => root,
         group => root,
         source => 'puppet:///modules/trac/xmlrpcplugin',
@@ -19,7 +21,7 @@ class trac::config::xmlrpc
     }
 
     exec { 'trac-xmlrpc-install':
-        cwd => '/usr/local/lib/python2.6/dist-packages/xmlrpcplugin/trunk',
+        cwd => "/usr/local/lib/python${::trac::params::python_version}/dist-packages/xmlrpcplugin/trunk",
         command => 'python setup.py install',
         onlyif => 'test ! -d /usr/local/lib/python*/dist-packages/TracXMLRPC-*',
         path => [ '/usr/local/bin', '/usr/bin' ],

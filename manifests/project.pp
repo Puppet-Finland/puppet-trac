@@ -26,21 +26,21 @@ define trac::project
     }
 
     file { 'trac-trac.ini':
-        name => '/var/lib/projects/${projectname}/conf/trac.ini',
+        name => "/var/lib/projects/${projectname}/conf/trac.ini",
         owner => root,
         group => root,
         mode => 644,
     }
 
     file { 'trac-log':
-        name => '/var/lib/projects/${projectname}/log',
+        name => "/var/lib/projects/${projectname}/log",
         owner => www-data,
         group => root,
         mode => 755,
     }
 
     file { 'trac-attachments':
-        name => '/var/lib/projects/${projectname}/attachments',
+        name => "/var/lib/projects/${projectname}/attachments",
         owner => www-data,
         group => root,
         mode => 755,
