@@ -1,0 +1,17 @@
+/* THIS FILE IS MANAGED BY PUPPET. ANY MANUAL CHANGES WILL GET OVERWRITTEN. */
+
+/*
+
+Adapted from here:
+
+ <http://trac.edgewall.org/wiki/TracEnvironment>
+ <http://www.postgresql.org/docs/8.1/static/sql-createdatabase.html>
+
+The template0 is an empty database template and is required for UTF-8 support 
+and when doing pg_dumps.
+
+*/
+
+CREATE USER <%= scope.lookupvar('trac::config::postgresql::db_user_name') %> WITH ENCRYPTED PASSWORD '<%= scope.lookupvar('trac::config::postgresql::db_user_password') %>';
+CREATE DATABASE <%= scope.lookupvar('trac::config::postgresql::db_name') %> WITH OWNER <%= scope.lookupvar('trac::config::postgresql::db_user_name') %> ENCODING 'UTF8' TEMPLATE template0;
+GRANT CONNECT ON DATABASE <%= scope.lookupvar('trac::config::postgresql::db_name') %> TO <%= scope.lookupvar('trac::config::postgresql::db_user_name') %>;

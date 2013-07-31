@@ -1,0 +1,9 @@
+### THIS FILE IS MANAGED BY PUPPET. ANY MANUAL CHANGES WILL GET OVERWRITTEN.
+
+# Apache2 Trac configuration, common to all hosted Trac projects.
+<Directory /var/lib/projects>
+	Options Indexes FollowSymLinks MultiViews
+	AllowOverride None
+	Order allow,deny
+	allow from all
+</Directory>

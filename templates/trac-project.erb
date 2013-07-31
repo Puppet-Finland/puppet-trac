@@ -1,0 +1,30 @@
+### THIS FILE IS MANAGED BY PUPPET. ANY MANUAL CHANGES WILL GET OVERWRITTEN.
+
+# Apache2 Trac configuration, specific to a particular project.
+#
+# FIXME: move away from mod_python, it's deprecated:
+#
+# <http://trac.edgewall.org/wiki/TracInstall>
+
+<Location /<%= projectname %>>
+   SetHandler mod_python
+   PythonInterpreter main_interpreter
+   PythonHandler trac.web.modpython_frontend 
+   PythonOption TracEnv /var/lib/projects/<%= projectname %>
+   PythonOption	TracEnvParentDir /var/lib/projects
+   PythonOption PYTHON_EGG_CACHE /var/lib/projects/egg-cache
+</Location>
+
+<LocationMatch ^/<%= projectname %>/login$>
+   AuthType Basic
+   AuthName "Login to <%= projectname %> Trac wiki/tracker"
+   Order Allow,Deny
+   Allow from All
+
+   # Here we setup Apache2 authentication
+<% apache2_auth_lines.each do |line| -%>
+   <%= line %>
+<% end -%>
+
+   Require valid-user
+</LocationMatch>
