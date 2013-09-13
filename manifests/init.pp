@@ -48,6 +48,9 @@ class trac
 )
 {
 
+# Rationale for this is explained in init.pp of the sshd module
+if hiera('manage_trac') != 'false' {
+
     class { 'trac::prequisites':
         db_backend => $db_backend,
     } 
@@ -62,6 +65,7 @@ class trac
     # Database settings
     if $db_backend == 'postgresql' {
         class { 'trac::config::postgresql':
+            db_name => "${db_name}",
             db_user_name => "${db_user_name}",
             db_user_password => "${db_user_password}",
             auth_line => "local ${db_name} ${db_user_name} password"
@@ -76,4 +80,5 @@ class trac
         ldap_bindpw => $ldap_bindpw,
         ldap_user_basedn => $ldap_user_basedn,
     }
+}
 }

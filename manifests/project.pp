@@ -25,6 +25,7 @@ define trac::project
         notify => Class['apache2::service'],
     }
 
+    # We only manage permissions of the following files and directories
     file { 'trac-trac.ini':
         name => "/var/lib/projects/${projectname}/conf/trac.ini",
         owner => root,

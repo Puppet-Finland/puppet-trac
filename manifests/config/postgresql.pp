@@ -5,6 +5,7 @@
 #
 class trac::config::postgresql
 (
+    $db_name,
     $db_user_name,
     $db_user_password,
     $auth_line

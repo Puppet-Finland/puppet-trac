@@ -3,7 +3,10 @@
 #
 # Install Trac using easy_install. By default Trac will go to /usr/local.
 #
-class trac::install($branch)
+class trac::install
+(
+    $branch
+)
 {
     include python::setuptools
 
