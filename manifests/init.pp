@@ -49,7 +49,7 @@ class trac
 {
 
 # Rationale for this is explained in init.pp of the sshd module
-if hiera('manage_trac') != 'false' {
+if hiera('manage_trac', 'true') != 'false' {
 
     class { 'trac::prequisites':
         db_backend => $db_backend,
