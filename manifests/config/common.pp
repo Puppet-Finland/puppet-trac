@@ -12,4 +12,12 @@ class trac::config::common {
         group => root,
         mode => 755,
     }
+
+    file { 'trac-egg-cache':
+        name => '/var/lib/projects/egg-cache',
+        ensure => directory,
+        owner => www-data,
+        group => root,
+        mode => 755,
+    }
 }

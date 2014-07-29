@@ -47,6 +47,25 @@ define trac::project
         mode => 755,
     }
 
+    file { "trac-${projectname}-wsgi":
+        name => "/var/lib/projects/${projectname}/wsgi",
+        ensure => directory,
+        owner => root,
+        group => root,
+        mode => 755,
+        require => Exec["trac-initenv-${projectname}"],
+    }
+
+    file { "trac-${projectname}.wsgi":
+        name => "/var/lib/projects/${projectname}/wsgi/${projectname}.wsgi",
+        ensure => present,
+        content => template('trac/project.wsgi.erb'),
+        owner => root,
+        group => root,
+        mode => 644,
+        require => File["trac-${projectname}-wsgi"],
+    }
+
     # If we add database backends we need to modify this
     if $db_backend == 'postgresql' {
         exec { "trac-initenv-${projectname}":
