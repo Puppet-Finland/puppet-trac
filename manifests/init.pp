@@ -65,8 +65,7 @@ if hiera('manage_trac', 'true') != 'false' {
         class { 'trac::config::postgresql':
             db_name => "${db_name}",
             db_user_name => "${db_user_name}",
-            db_user_password => "${db_user_password}",
-            auth_line => "local ${db_name} ${db_user_name} password"
+            db_user_password => "${db_user_password}"
         }
     }
 
