@@ -20,6 +20,8 @@
 #   Database user for access the Trac database. Defaults to 'tracuser'.
 # [*db_user_password*]
 #   Password for the database user.
+# [*projects*]
+#   A hash of trac::project resources to realize.
 #
 # == Authors
 #
@@ -42,7 +44,8 @@ class trac
     $ldap_port = $::ldap_port,
     $ldap_binddn = $::ldap_binddn,
     $ldap_bindpw = $::ldap_bindpw,
-    $ldap_user_basedn = $::ldap_user_basedn
+    $ldap_user_basedn = $::ldap_user_basedn,
+    $projects = {}
 )
 {
 
@@ -77,5 +80,7 @@ if hiera('manage_trac', 'true') != 'false' {
         ldap_bindpw => $ldap_bindpw,
         ldap_user_basedn => $ldap_user_basedn,
     }
+
+    create_resources('trac::project', $projects)
 }
 }
