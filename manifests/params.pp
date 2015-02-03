@@ -16,7 +16,7 @@ class trac::params {
             $python_version = '2.6'
         }
         default: {
-            $python_version = '2.7'
+            fail("Unsupported OS: ${::lsbdistcodename}")
         }
     }
 }
