@@ -1,12 +1,13 @@
 {
   "name": "puppetfinland-trac",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Puppet-Finland team",
   "license": "BSD license",
   "summary": "Setup Trac bug tracker/wiki",
   "source": "https://github.com/Puppet-Finland/trac.git",
   "project_page": "https://github.com/Puppet-Finland/trac",
   "dependencies": [
-    { "name": "puppetfinland/apache2", "version_requirement": ">= 0.5.0" }
+    { "name": "puppetfinland/apache2", "version_requirement": ">= 0.5.0" },
+    { "name": "puppetfinland/python", "version_requirement": ">= 0.5.1" }
   ]
 }
