@@ -9,9 +9,9 @@ class trac::config::apache2 {
     # We place this file into conf.d as we don't host multiple sites; 
     # all Apache2 configuration files are considered global.
     file { 'trac-trac-common':
+        ensure  => present,
         name    => '/etc/apache2/conf.d/trac-common',
         content => template('trac/trac-common.erb'),
-        ensure  => present,
         owner   => root,
         group   => root,
         mode    => '0644',

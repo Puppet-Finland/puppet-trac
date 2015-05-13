@@ -50,6 +50,7 @@
 #
 class trac
 (
+    $manage = 'yes',
     $branch,
     $db_backend = 'postgresql',
     $db_name = 'trac',
@@ -83,7 +84,7 @@ if $manage == 'yes' {
         class { '::trac::config::postgresql':
             db_name          => $db_name,
             db_user_name     => $db_user_name,
-            db_user_password => $db_user_password
+            db_user_password => $db_user_password,
         }
     }
 
@@ -94,7 +95,7 @@ if $manage == 'yes' {
         ldap_binddn       => $ldap_binddn,
         ldap_bindpw       => $ldap_bindpw,
         ldap_user_basedn  => $ldap_user_basedn,
-        ldap_dn_attribute => $ldap_dn_attribute, 
+        ldap_dn_attribute => $ldap_dn_attribute,
     }
 
     create_resources('trac::project', $projects)
