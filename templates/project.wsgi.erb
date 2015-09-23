@@ -4,5 +4,5 @@ os.environ['PYTHON_EGG_CACHE'] = '/var/lib/projects/egg-cache'
 
 import trac.web.main
 def application(environ, start_response):
-  environ['trac.env_path'] = '/var/lib/projects/<%= projectname %>'
+  environ['trac.env_path'] = '/var/lib/projects/<%= @projectname %>'
   return trac.web.main.dispatch_request(environ, start_response)

@@ -2,22 +2,22 @@
 
 # Apache2 Trac configuration, specific to a particular project.
 
-WSGIScriptAlias /<%= projectname %> /var/lib/projects/<%= projectname %>/wsgi/<%= projectname %>.wsgi
+WSGIScriptAlias /<%= @projectname %> /var/lib/projects/<%= @projectname %>/wsgi/<%= @projectname %>.wsgi
 
-<Directory /var/lib/projects/<%= projectname %>/wsgi>
+<Directory /var/lib/projects/<%= @projectname %>/wsgi>
     WSGIApplicationGroup %{GLOBAL}
     Order deny,allow
     Allow from all
 </Directory>
 
-<LocationMatch ^/<%= projectname %>/login$>
+<LocationMatch ^/<%= @projectname %>/login$>
    AuthType Basic
-   AuthName "Login to <%= projectname %> Trac wiki/tracker"
+   AuthName "Login to <%= @projectname %> Trac wiki/tracker"
    Order Allow,Deny
    Allow from All
 
    # Here we setup Apache2 authentication
-<% apache2_auth_lines.each do |line| -%>
+<% @apache2_auth_lines.each do |line| -%>
    <%= line %>
 <% end -%>
 
