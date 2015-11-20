@@ -15,7 +15,8 @@ class trac::config::postgresql
 
     # Create a database ('trac') an a user ('tracuser') for Trac
     postgresql::loadsql { 'trac-trac.sql':
-        basename => 'trac',
+        basename   => 'trac',
+        modulename => 'trac',
     }
 
     # Add an authentication line for Trac to postgresql pg_hba.conf. For details
