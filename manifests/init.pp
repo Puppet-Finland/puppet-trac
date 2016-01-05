@@ -65,6 +65,16 @@ class trac
 )
 {
 
+validate_bool($manage)
+validate_re("${db_backend}", 'postgresql')
+
+$string_params = [ $db_name, $db_user_name, $db_user_password, $ldap_host, $ldap_port, $ldap_binddn, $ldap_bindpw, $ldap_user_basedn, $ldap_dn_attribute ]
+$string_params.each |$param| {
+    validate_string($param)
+}
+
+validate_hash($projects)
+
 if $manage {
 
     class { '::trac::prequisites':
