@@ -6,7 +6,8 @@
 # == Parameters
 #
 # [*projectname*]
-#   The name of the project. This needs to be string. No default value.
+#   The name of the project. This needs to be string. Defaults to resource 
+#   $title.
 # [*use_ldap*]
 #   Whether this Trac instance authenticates from LDAP. Valid values are true 
 #   (default) and false. Note that if this set to true, $::trac::use_ldap also 
@@ -17,7 +18,7 @@
 #
 define trac::project
 (
-    $projectname,
+    $projectname = $title,
     $use_ldap = true,
     $db_backend = 'postgresql'
 )
