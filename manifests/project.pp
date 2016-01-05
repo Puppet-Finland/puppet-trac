@@ -10,8 +10,9 @@
 #   $title.
 # [*use_ldap*]
 #   Whether this Trac instance authenticates from LDAP. Valid values are true 
-#   (default) and false. Note that if this set to true, $::trac::use_ldap also 
-#   needs be true, or LDAP settings will be missing.
+#   and false. Defaults to the value of $::trac::use_ldap. Note that if this is 
+#   set to true, $::trac::use_ldap also needs be true, or LDAP settings will be 
+#   missing.
 # [*db_backend*]
 #   The database backend to use. Defaults to 'postgresql', which is currently 
 #   the only supported option.
@@ -19,15 +20,23 @@
 define trac::project
 (
     $projectname = $title,
-    $use_ldap = true,
+    $use_ldap = undef,
     $db_backend = 'postgresql'
 )
 {
+    include ::apache2::params
+
     validate_string($projectname)
-    validate_bool($use_ldap)
     validate_re("${db_backend}", 'postgresql')
 
-    if $use_ldap {
+    $configure_apache2_ldap_auth = $use_ldap ? {
+        undef   => $::trac::use_ldap,
+        default => $use_ldap,
+    }
+
+    validate_bool($configure_apache2_ldap_auth)
+
+    if $configure_apache2_ldap_auth {
         # Fetch LDAP authentication settings from generic Trac configuration
         validate_array($::trac::config::ldapauth::apache2_ldap_auth_lines)
         $apache2_auth_lines = $::trac::config::ldapauth::apache2_ldap_auth_lines
