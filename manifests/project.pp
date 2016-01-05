@@ -35,7 +35,7 @@ define trac::project
         # Apache2 authentication settings (among other things) are in this file
         file { "trac-${projectname}":
             ensure  => present,
-            name    => "/etc/apache2/conf.d/trac-${projectname}",
+            name    => "${::apache2::params::conf_d_dir}/trac-${projectname}",
             content => template('trac/trac-project.erb'),
             owner   => root,
             group   => root,
