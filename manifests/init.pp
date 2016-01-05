@@ -7,7 +7,7 @@
 # == Parameters
 #
 # [*manage*]
-#   Manage Trac with Puppet. Valid values are 'yes' (default) and 'no'.
+#   Manage Trac with Puppet. Valid values are true (default) and false.
 # [*branch*]
 #   Name of the Trac branch to install. A list is available here:
 # 
