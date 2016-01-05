@@ -42,10 +42,10 @@ define trac::project
         $apache2_auth_lines = $::trac::config::ldapauth::apache2_ldap_auth_lines
 
         # Apache2 authentication settings (among other things) are in this file
-        file { "trac-${projectname}":
+        file { "trac-${projectname}.conf":
             ensure  => present,
-            name    => "${::apache2::params::conf_d_dir}/trac-${projectname}",
-            content => template('trac/trac-project.erb'),
+            name    => "${::apache2::params::conf_d_dir}/trac-${projectname}.conf",
+            content => template('trac/trac-project.conf.erb'),
             owner   => root,
             group   => root,
             mode    => '0644',
