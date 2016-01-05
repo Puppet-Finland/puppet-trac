@@ -12,6 +12,7 @@ class trac::prequisites
 
     include ::apache2
     include ::apache2::config::wsgi
+    include ::subversion
     include ::python::subversion
 
     # Extra prequisites if we chose to use postgresql
