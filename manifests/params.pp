@@ -9,6 +9,9 @@ class trac::params {
     # are not necessary.
 
     case $::lsbdistcodename {
+        'trusty': {
+            $python_version = '2.7'
+        }
         'wheezy': {
             $python_version = '2.7'
         }

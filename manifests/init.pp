@@ -76,6 +76,8 @@ validate_hash($projects)
 
 if $manage {
 
+    include ::trac::absent
+
     class { '::trac::prequisites':
         db_backend => $db_backend,
     }

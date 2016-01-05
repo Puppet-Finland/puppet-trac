@@ -41,6 +41,11 @@ define trac::project
         validate_array($::trac::config::ldapauth::apache2_ldap_auth_lines)
         $apache2_auth_lines = $::trac::config::ldapauth::apache2_ldap_auth_lines
 
+        # Remove obsolete config file (see commit cf93da9828a3)
+        file { "${::apache2::params::conf_d_dir}/trac-${projectname}":
+            ensure => absent,
+        }
+
         # Apache2 authentication settings (among other things) are in this file
         file { "trac-${projectname}.conf":
             ensure  => present,
