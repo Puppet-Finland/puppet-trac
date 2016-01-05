@@ -22,6 +22,9 @@
 #   Database user for access the Trac database. Defaults to 'tracuser'.
 # [*db_user_password*]
 #   Password for the database user.
+# [*use_ldap*]
+#   Whether to authenticate from LDAP or not. Valid values are true (default) 
+#   and false.
 # [*ldap_host*]
 #   LDAP server's IP address or hostname.
 # [*ldap_port*]
@@ -55,12 +58,13 @@ class trac
     $db_name = 'trac',
     $db_user_name = 'tracuser',
     $db_user_password,
-    $ldap_host,
-    $ldap_port,
-    $ldap_binddn,
-    $ldap_bindpw,
-    $ldap_user_basedn,
-    $ldap_dn_attribute,
+    $use_ldap = true,
+    $ldap_host = undef,
+    $ldap_port = undef,
+    $ldap_binddn = undef,
+    $ldap_bindpw = undef,
+    $ldap_user_basedn = undef,
+    $ldap_dn_attribute = undef,
     $projects = {}
 )
 {
@@ -68,9 +72,17 @@ class trac
 validate_bool($manage)
 validate_re("${db_backend}", 'postgresql')
 
-$string_params = [ $db_name, $db_user_name, $db_user_password, $ldap_host, $ldap_port, $ldap_binddn, $ldap_bindpw, $ldap_user_basedn, $ldap_dn_attribute ]
-$string_params.each |$param| {
-    validate_string($param)
+$db_params = [ $db_name, $db_user_name, $db_user_password ]
+$db_params.each |$db_param| {
+    validate_string($db_param)
+}
+
+validate_bool($use_ldap)
+if $use_ldap {
+    $ldap_params = [ $ldap_host, $ldap_port, $ldap_binddn, $ldap_bindpw, $ldap_user_basedn, $ldap_dn_attribute ]
+    $ldap_params.each |$ldap_param| {
+        validate_string($ldap_param)
+    }
 }
 
 validate_hash($projects)
@@ -97,14 +109,15 @@ if $manage {
         }
     }
 
-    # LDAP settings
-    class { '::trac::config::ldapauth':
-        ldap_host         => $ldap_host,
-        ldap_port         => $ldap_port,
-        ldap_binddn       => $ldap_binddn,
-        ldap_bindpw       => $ldap_bindpw,
-        ldap_user_basedn  => $ldap_user_basedn,
-        ldap_dn_attribute => $ldap_dn_attribute,
+    if $use_ldap {
+        class { '::trac::config::ldapauth':
+            ldap_host         => $ldap_host,
+            ldap_port         => $ldap_port,
+            ldap_binddn       => $ldap_binddn,
+            ldap_bindpw       => $ldap_bindpw,
+            ldap_user_basedn  => $ldap_user_basedn,
+            ldap_dn_attribute => $ldap_dn_attribute,
+        }
     }
 
     create_resources('trac::project', $projects)
