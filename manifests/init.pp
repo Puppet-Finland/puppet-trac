@@ -71,20 +71,7 @@ class trac
 
 validate_bool($manage)
 validate_re("${db_backend}", 'postgresql')
-
-$db_params = [ $db_name, $db_user_name, $db_user_password ]
-$db_params.each |$db_param| {
-    validate_string($db_param)
-}
-
 validate_bool($use_ldap)
-if $use_ldap {
-    $ldap_params = [ $ldap_host, $ldap_port, $ldap_binddn, $ldap_bindpw, $ldap_user_basedn, $ldap_dn_attribute ]
-    $ldap_params.each |$ldap_param| {
-        validate_string($ldap_param)
-    }
-}
-
 validate_hash($projects)
 
 if $manage {

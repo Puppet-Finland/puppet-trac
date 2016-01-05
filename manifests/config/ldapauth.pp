@@ -14,6 +14,11 @@ class trac::config::ldapauth
 )
 {
 
+    $ldap_params = [ $ldap_host, $ldap_port, $ldap_binddn, $ldap_bindpw, $ldap_user_basedn, $ldap_dn_attribute ]
+    $ldap_params.each |$ldap_param| {
+        validate_string($ldap_param)
+    }
+
     include ::apache2::config::ldapauth
 
     # LDAP authentication settings for Apache2. We can use this array in all 

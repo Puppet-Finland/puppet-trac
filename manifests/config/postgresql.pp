@@ -11,6 +11,11 @@ class trac::config::postgresql
 )
 {
 
+    $db_params = [ $db_name, $db_user_name, $db_user_password ]
+    $db_params.each |$db_param| {
+        validate_string($db_param)
+    }
+
     include ::postgresql::params
 
     # Create a database ('trac') an a user ('tracuser') for Trac
