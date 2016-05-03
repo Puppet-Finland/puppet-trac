@@ -67,6 +67,13 @@ define trac::project
         mode  => '0644',
     }
 
+    file { 'trac-conf':
+        name  => "/var/lib/projects/${projectname}/conf",
+        owner => root,
+        group => root,
+        mode  => '0755',
+    }
+
     file { 'trac-log':
         name  => "/var/lib/projects/${projectname}/log",
         owner => www-data,
