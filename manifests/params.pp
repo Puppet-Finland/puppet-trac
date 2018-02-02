@@ -9,10 +9,7 @@ class trac::params {
     # are not necessary.
 
     case $::lsbdistcodename {
-        /(xenial)/: {
-            $python_version = '3.5'
-        }
-        /(trusty|wheezy)/: {
+        /(trusty|wheezy|xenial)/: {
             $python_version = '2.7'
         }
         default: {
