@@ -20,6 +20,5 @@ class trac::config::ldapauth
     $apache2_ldap_auth_lines = ['AuthBasicProvider ldap',
                                 "AuthLDAPBindDN ${ldap_binddn}",
                                 "AuthLDAPBindPassword ${ldap_bindpw}",
-                                "AuthLDAPURL ldap://${ldap_host}:${ldap_port}/${ldap_user_basedn}?${ldap_dn_attribute}",
-                                'AuthzLDAPAuthoritative on']
+                                "AuthLDAPURL ldap://${ldap_host}:${ldap_port}/${ldap_user_basedn}?${ldap_dn_attribute}"]
 }
