@@ -12,7 +12,7 @@ Vagrant.configure("2") do |config|
       s.path = "vagrant/prepare.sh"
       s.args = "trac"
     end
-    #box.vm.provision "shell", inline: "puppet apply --modulepath /home/vagrant/modules /vagrant/vagrant/trac.pp"
+    box.vm.provision "shell", inline: "puppet apply --modulepath /home/vagrant/modules /vagrant/vagrant/trac.pp"
     box.vm.provider "virtualbox" do |vb|
       vb.gui = false
       vb.memory = 1024
