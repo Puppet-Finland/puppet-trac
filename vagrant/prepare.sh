@@ -13,6 +13,7 @@ THIS_MODULE=$1
 CWD=`pwd`
 
 # Install dependencies
+apt-get update
 apt-get -y install git
 /opt/puppetlabs/puppet/bin/gem install librarian-puppet
 
