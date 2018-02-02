@@ -8,6 +8,6 @@ class trac::config::git {
         command => 'easy_install http://github.com/hvr/trac-git-plugin/tarball/master',
         onlyif  => 'test ! -d /usr/local/lib/python*/dist-packages/TracGit*',
         path    => [ '/usr/local/bin', '/usr/bin' ],
-        require => Class['trac'],
+        require => [ Class['trac'], Class['python::setuptools'] ],
     }
 }

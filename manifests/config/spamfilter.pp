@@ -8,6 +8,6 @@ class trac::config::spamfilter {
         command => 'easy_install TracSpamFilter',
         onlyif  => 'test ! -d /usr/local/lib/python*/dist-packages/TracSpamFilter*',
         path    => [ '/usr/local/bin', '/usr/bin' ],
-        require => Class['trac'],
+        require => [ Class['trac'], Class['python::setuptools'] ],
     }
 }
