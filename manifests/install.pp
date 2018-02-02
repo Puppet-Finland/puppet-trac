@@ -11,7 +11,7 @@ class trac::install
     include ::python::setuptools
 
     exec { 'trac-easy_install':
-        command => "easy_install http://svn.edgewall.org/repos/trac/branches/${branch}",
+        command => "easy_install https://svn.edgewall.org/repos/trac/branches/${branch}",
 
         # This file should always be present if Trac is installed 
         # using easy_install.
