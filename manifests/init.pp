@@ -65,7 +65,7 @@ class trac
     Optional[String]   $ldap_bindpw = undef,
     Optional[String]   $ldap_user_basedn = undef,
     Optional[String]   $ldap_dn_attribute = undef,
-    Hash[String]       $projects = {}
+    Hash               $projects = {}
 )
 {
 
