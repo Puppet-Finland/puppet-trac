@@ -8,6 +8,8 @@ Vagrant.configure("2") do |config|
     box.vm.box_version = "1.0.0"
     box.vm.hostname = "trac.local"
     box.vm.network "private_network", ip: "192.168.18.100"
+    box.vm.network "forwarded_port", guest: 80, host: 8080
+    box.vm.network "forwarded_port", guest: 443, host: 8443
     box.vm.provision "shell" do |s|
       s.path = "vagrant/prepare.sh"
       s.args = "trac"
