@@ -1,6 +1,6 @@
 {
   "name": "puppetfinland-trac",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "author": "Puppet-Finland team",
   "license": "BSD license",
   "summary": "Setup Trac bug tracker/wiki",

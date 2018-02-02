@@ -9,14 +9,11 @@ class trac::params {
     # are not necessary.
 
     case $::lsbdistcodename {
-        'trusty': {
-            $python_version = '2.7'
+        /(xenial)/: {
+            $python_version = '3.5'
         }
-        'wheezy': {
+        /(trusty|wheezy)/: {
             $python_version = '2.7'
-        }
-        'squeeze': {
-            $python_version = '2.6'
         }
         default: {
             fail("Unsupported OS: ${::lsbdistcodename}")

@@ -52,27 +52,22 @@
 #
 class trac
 (
-    $manage = true,
-    $branch,
-    $db_backend = 'postgresql',
-    $db_name = 'trac',
-    $db_user_name = 'tracuser',
-    $db_user_password,
-    $use_ldap = true,
-    $ldap_host = undef,
-    $ldap_port = undef,
-    $ldap_binddn = undef,
-    $ldap_bindpw = undef,
-    $ldap_user_basedn = undef,
-    $ldap_dn_attribute = undef,
-    $projects = {}
+    String             $branch,
+    String             $db_user_password,
+    Boolean            $manage = true,
+    Enum['postgresql'] $db_backend = 'postgresql',
+    String             $db_name = 'trac',
+    String             $db_user_name = 'tracuser',
+    Boolean            $use_ldap = true,
+    Optional[String]   $ldap_host = undef,
+    Optional[Integer]  $ldap_port = undef,
+    Optional[String]   $ldap_binddn = undef,
+    Optional[String]   $ldap_bindpw = undef,
+    Optional[String]   $ldap_user_basedn = undef,
+    Optional[String]   $ldap_dn_attribute = undef,
+    Hash[String]       $projects = {}
 )
 {
-
-validate_bool($manage)
-validate_re("${db_backend}", 'postgresql')
-validate_bool($use_ldap)
-validate_hash($projects)
 
 if $manage {
 

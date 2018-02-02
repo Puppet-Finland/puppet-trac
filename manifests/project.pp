@@ -19,26 +19,20 @@
 #
 define trac::project
 (
-    $projectname = $title,
-    $use_ldap = undef,
-    $db_backend = 'postgresql'
+    String             $projectname = $title,
+    Optional[Boolean]  $use_ldap = undef,
+    Enum['postgresql'] $db_backend = 'postgresql'
 )
 {
     include ::apache2::params
-
-    validate_string($projectname)
-    validate_re("${db_backend}", 'postgresql')
 
     $configure_apache2_ldap_auth = $use_ldap ? {
         undef   => $::trac::use_ldap,
         default => $use_ldap,
     }
 
-    validate_bool($configure_apache2_ldap_auth)
-
     if $configure_apache2_ldap_auth {
         # Fetch LDAP authentication settings from generic Trac configuration
-        validate_array($::trac::config::ldapauth::apache2_ldap_auth_lines)
         $apache2_auth_lines = $::trac::config::ldapauth::apache2_ldap_auth_lines
 
         # Remove obsolete config file (see commit cf93da9828a3)
