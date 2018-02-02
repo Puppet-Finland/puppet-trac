@@ -10,6 +10,16 @@ include ::trac::config::navadd
 include ::trac::config::tocmacro
 include ::webserver
 
+# Fix error when attempting to load trac.sql to postgresql
+# on this particular box:
+#
+# psql:/etc/postgresql/9.5/main/trac.sql:16: ERROR:  encoding "UTF8" does not 
+# match locale "en_US"
+#
+class { 'locales':
+    locales => ['en_US.UTF-8 UTF-8'],
+}
+
 class { '::trac':
     branch            => '1.2-stable',
     db_name           => 'trac',
@@ -22,4 +32,9 @@ class { '::trac':
     ldap_port         => 389,
     ldap_user_basedn  => 'ou=People,dc=example,dc=org',
     ldap_dn_attribute => 'cn',
+    require           => Class['::locales'],
+}
+
+trac::project { 'myproject':
+    projectname => 'myproject',
 }

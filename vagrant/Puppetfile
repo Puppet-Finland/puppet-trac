@@ -14,6 +14,9 @@ mod 'puppetfinland-gettext',
 mod 'puppetfinland-localbackups',
     :git => 'https://github.com/Puppet-Finland/localbackups.git'
 
+mod 'puppetfinland-locales',
+    :git => 'https://github.com/Puppet-Finland/locales.git'
+
 mod 'puppetfinland-monit',
     :git => 'https://github.com/Puppet-Finland/monit.git'
 
