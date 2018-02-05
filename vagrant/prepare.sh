@@ -13,12 +13,15 @@ THIS_MODULE=$1
 CWD=`pwd`
 
 # Install dependencies
+wget https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb
+dpkg -i puppetlabs-release-pc1-xenial.deb
 apt-get update
-apt-get -y install git
+apt-get -y install git puppet-agent
+export PATH=$PATH:/opt/puppetlabs/bin
 /opt/puppetlabs/puppet/bin/gem install librarian-puppet
 
 # Prepare for librarian-puppet
-cd /home/vagrant
+cd /home/ubuntu
 mkdir -p modules
 cp /vagrant/vagrant/Puppetfile .
 
