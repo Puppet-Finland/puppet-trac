@@ -13,7 +13,7 @@ class trac::config::navadd {
         group   => root,
         source  => 'puppet:///modules/trac/navaddplugin',
         recurse => true,
-        require => Class['trac']
+        require => Class['::trac::install'],
     }
 
     exec { 'trac-navadd-install':

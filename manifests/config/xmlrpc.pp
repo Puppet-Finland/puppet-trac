@@ -17,7 +17,7 @@ class trac::config::xmlrpc
         group   => root,
         source  => 'puppet:///modules/trac/xmlrpcplugin',
         recurse => true,
-        require => Class['trac']
+        require => Class['::trac::install']
     }
 
     exec { 'trac-xmlrpc-install':

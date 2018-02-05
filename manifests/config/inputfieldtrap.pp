@@ -13,7 +13,7 @@ class trac::config::inputfieldtrap {
         group   => root,
         source  => 'puppet:///modules/trac/inputfieldtrapplugin',
         recurse => true,
-        require => Class['trac']
+        require => Class['::trac::install'],
     }
 
     exec { 'trac-inputfieldtrap-install':

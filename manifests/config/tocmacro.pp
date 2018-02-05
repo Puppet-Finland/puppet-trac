@@ -8,6 +8,6 @@ class trac::config::tocmacro {
         command => 'easy_install https://trac-hacks.org/svn/tocmacro/0.11',
         onlyif  => 'test ! -d /usr/local/lib/python*/dist-packages/TracTocMacro*',
         path    => [ '/usr/local/bin', '/usr/bin' ],
-        require => [ Class['trac'], Class['python::setuptools'] ],
+        require => [ Class['::trac::install'], Class['python::setuptools'] ],
     }
 }
