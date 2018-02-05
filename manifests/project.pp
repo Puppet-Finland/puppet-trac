@@ -55,34 +55,34 @@ define trac::project
 
     # We only manage permissions of the following files and directories
     file { 'trac-trac.ini':
-        name  => "/var/lib/projects/${projectname}/conf/trac.ini",
-        owner => root,
-        group => root,
-        mode  => '0644',
+        name    => "/var/lib/projects/${projectname}/conf/trac.ini",
+        owner   => root,
+        group   => root,
+        mode    => '0644',
         require => Exec["trac-initenv-${projectname}"],
     }
 
     file { 'trac-conf':
-        name  => "/var/lib/projects/${projectname}/conf",
-        owner => root,
-        group => root,
-        mode  => '0755',
+        name    => "/var/lib/projects/${projectname}/conf",
+        owner   => root,
+        group   => root,
+        mode    => '0755',
         require => Exec["trac-initenv-${projectname}"],
     }
 
     file { 'trac-log':
-        name  => "/var/lib/projects/${projectname}/log",
-        owner => www-data,
-        group => root,
-        mode  => '0755',
+        name    => "/var/lib/projects/${projectname}/log",
+        owner   => www-data,
+        group   => root,
+        mode    => '0755',
         require => Exec["trac-initenv-${projectname}"],
     }
 
     file { 'trac-attachments':
-        name  => "/var/lib/projects/${projectname}/attachments",
-        owner => www-data,
-        group => root,
-        mode  => '0755',
+        name    => "/var/lib/projects/${projectname}/attachments",
+        owner   => www-data,
+        group   => root,
+        mode    => '0755',
         require => Exec["trac-initenv-${projectname}"],
     }
 
