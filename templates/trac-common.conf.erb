@@ -2,8 +2,7 @@
 
 # Apache2 Trac configuration, common to all hosted Trac projects.
 <Directory /var/lib/projects>
-	Options Indexes FollowSymLinks MultiViews
-	AllowOverride None
-	Order allow,deny
-	allow from all
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride None
+    Require all granted
 </Directory>
