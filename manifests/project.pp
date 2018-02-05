@@ -59,6 +59,7 @@ define trac::project
         owner => root,
         group => root,
         mode  => '0644',
+        require => Exec["trac-initenv-${projectname}"],
     }
 
     file { 'trac-conf':
@@ -66,6 +67,7 @@ define trac::project
         owner => root,
         group => root,
         mode  => '0755',
+        require => Exec["trac-initenv-${projectname}"],
     }
 
     file { 'trac-log':
@@ -73,6 +75,7 @@ define trac::project
         owner => www-data,
         group => root,
         mode  => '0755',
+        require => Exec["trac-initenv-${projectname}"],
     }
 
     file { 'trac-attachments':
@@ -80,6 +83,7 @@ define trac::project
         owner => www-data,
         group => root,
         mode  => '0755',
+        require => Exec["trac-initenv-${projectname}"],
     }
 
     file { "trac-${projectname}-wsgi":
