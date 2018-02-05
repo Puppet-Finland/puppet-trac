@@ -15,8 +15,10 @@ See [metadata.json](metadata.json).
 
 This module has been tested on
 
-* Debian 7
-* Ubuntu 14.04 (partial support, see [TODO](TODO.md) for details).
+* Ubuntu 16.04
+
+Ubuntu 14.04 may work, but it has not been tested with the latest version of 
+this module.
 
 It should work with minor modifications on any Debian/Ubuntu derivative. Adding 
 support for other *NIX-like operating systems would be slightly more challenging 
