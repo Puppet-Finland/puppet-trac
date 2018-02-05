@@ -8,6 +8,7 @@ include ::trac::config::git
 include ::trac::config::inputfieldtrap
 include ::trac::config::navadd
 include ::trac::config::tocmacro
+include ::trac::config::spamfilter
 include ::webserver
 
 # Fix error when attempting to load trac.sql to postgresql
