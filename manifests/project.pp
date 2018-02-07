@@ -5,6 +5,9 @@
 #
 # == Parameters
 #
+# [*manage_trac_ini*]
+#   Manage (file permissions) of trac.ini. Valid values are true (default) and 
+#   false. Set to false if some other module manages the file.
 # [*projectname*]
 #   The name of the project. This needs to be string. Defaults to resource 
 #   $title.
@@ -19,6 +22,7 @@
 #
 define trac::project
 (
+    Boolean            $manage_trac_ini = true,
     String             $projectname = $title,
     Optional[Boolean]  $use_ldap = undef,
     Enum['postgresql'] $db_backend = 'postgresql'
@@ -54,12 +58,14 @@ define trac::project
     }
 
     # We only manage permissions of the following files and directories
-    file { 'trac-trac.ini':
-        name    => "/var/lib/projects/${projectname}/conf/trac.ini",
-        owner   => root,
-        group   => root,
-        mode    => '0644',
-        require => Exec["trac-initenv-${projectname}"],
+    if $manage_trac_ini {
+        file { 'trac-trac.ini':
+            name    => "/var/lib/projects/${projectname}/conf/trac.ini",
+            owner   => root,
+            group   => root,
+            mode    => '0644',
+            require => Exec["trac-initenv-${projectname}"],
+        }
     }
 
     file { 'trac-conf':
