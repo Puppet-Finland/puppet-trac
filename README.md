@@ -1,28 +1,33 @@
 # trac
 
-A Puppet module for managing Trac
+A Puppet module for managing Trac instances that may authenticate from LDAP.
 
 # Module usage
 
-* [Class: trac](manifests/init.pp)
-* [Define: trac::project](manifests/project.pp)
+Setup Trac instance with LDAP authentication and a project which uses a customized trac.ini:
 
-# Dependencies
+    class { '::trac':
+      manage            => true,
+      branch            => '1.2-stable',
+      db_name           => 'trac',
+      db_user_name      => 'tracuser',
+      db_user_password  => 'secret',
+      use_ldap          => true,
+      ldap_binddn       => 'cn=proxy,dc=example,dc=org',
+      ldap_bindpw       => 'secret',
+      ldap_host         => 'ldap.example.org',
+      ldap_port         => 389,
+      ldap_user_basedn  => 'ou=People,dc=example,dc=org',
+      ldap_dn_attribute => 'cn',
+    }
+    
+    trac::project { 'openvpn':
+      projectname     => 'myproject',
+      manage_trac_ini => false,
+    }
 
-See [metadata.json](metadata.json).
+For further details see [init.pp](manifests/init.pp) and [project.pp](manifests/project.pp).
 
-# Operating system support
+This module can be easily tested with Vagrant, see [Vagrantfile](Vagrantfile).
 
-This module has been tested on
-
-* Ubuntu 16.04
-
-Ubuntu 14.04 may work, but it has not been tested with the latest version of 
-this module.
-
-It should work with minor modifications on any Debian/Ubuntu derivative. Adding 
-support for other *NIX-like operating systems would be slightly more challenging 
-due to the way how Apache2 is configured on Debian/Ubuntu.
-
-For details see [params.pp](manifests/params.pp).
 
