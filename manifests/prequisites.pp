@@ -15,7 +15,7 @@ class trac::prequisites
 
     # Extra prequisites if we chose to use postgresql
     if $db_backend == 'postgresql' {
-        include ::postgresql
+        include ::pf_postgresql
         include ::python::psycopg2
     }
 }

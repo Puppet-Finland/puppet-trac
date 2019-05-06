@@ -11,18 +11,18 @@ class trac::config::postgresql
 )
 {
 
-    include ::postgresql::params
+    include ::pf_postgresql::params
 
     # Create a database ('trac') an a user ('tracuser') for Trac
-    postgresql::loadsql { 'trac-trac.sql':
+    pf_postgresql::loadsql { 'trac-trac.sql':
         basename   => 'trac',
         modulename => 'trac',
     }
 
     # Add an authentication line for Trac to postgresql pg_hba.conf. For details
-    # look into postgresql::config class.
+    # look into pf_postgresql::config class.
     augeas { 'trac-pg_hba.conf':
-        context => "/files${::postgresql::params::pg_hba_conf}",
+        context => "/files${::pf_postgresql::params::pg_hba_conf}",
         changes => [
             'ins 0514 after 1',
             'set 0514/type local',
@@ -31,8 +31,8 @@ class trac::config::postgresql
             'set 0514/method password'
         ],
         lens    => 'Pg_hba.lns',
-        incl    => $::postgresql::params::pg_hba_conf,
+        incl    => $::pf_postgresql::params::pg_hba_conf,
         onlyif  => "match *[user = \'${db_user_name}\'] size == 0",
-        notify  => Class['postgresql::service'],
+        notify  => Class['pf_postgresql::service'],
     }
 }

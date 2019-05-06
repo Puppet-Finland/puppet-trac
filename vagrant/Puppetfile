@@ -26,7 +26,7 @@ mod 'puppetfinland-os',
 mod 'puppetfinland-packetfilter',
     :git => 'https://github.com/Puppet-Finland/packetfilter.git'
 
-mod 'puppetfinland-postgresql',
+mod 'puppetfinland-pf_postgresql',
     :git => 'https://github.com/Puppet-Finland/postgresql.git'
 
 mod 'puppetfinland-python',

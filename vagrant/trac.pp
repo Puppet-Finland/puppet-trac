@@ -3,7 +3,7 @@
 $servermonitor = 'root@localhost'
 
 include ::monit
-include ::postgresql
+include ::pf_postgresql
 include ::trac::config::git
 include ::trac::config::inputfieldtrap
 include ::trac::config::navadd
