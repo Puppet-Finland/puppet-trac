@@ -1,7 +1,6 @@
 #
-# == Class: trac::config::postgresql
-#
-# Configure postgresql so that Trac can use it as a data store
+# @summary
+#   Configure postgresql so that Trac can use it as a data store
 #
 class trac::config::postgresql
 (

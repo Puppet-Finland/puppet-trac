@@ -1,22 +1,19 @@
 #
-# == Define: trac::project
+# @summary
+#   Create a new Trac project.
 #
-# Create a new Trac project.
-#
-# == Parameters
-#
-# [*manage_trac_ini*]
+# @param manage_trac_ini
 #   Manage (file permissions) of trac.ini. Valid values are true (default) and 
 #   false. Set to false if some other module manages the file.
-# [*projectname*]
+# @param projectname
 #   The name of the project. This needs to be string. Defaults to resource 
 #   $title.
-# [*use_ldap*]
+# @param use_ldap
 #   Whether this Trac instance authenticates from LDAP. Valid values are true 
 #   and false. Defaults to the value of $::trac::use_ldap. Note that if this is 
 #   set to true, $::trac::use_ldap also needs be true, or LDAP settings will be 
 #   missing.
-# [*db_backend*]
+# @param db_backend
 #   The database backend to use. Defaults to 'postgresql', which is currently 
 #   the only supported option.
 #

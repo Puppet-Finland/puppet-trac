@@ -1,7 +1,6 @@
 #
-# == Class: trac::config::inputfieldtrap
-#
-# Install InputFieldTrap
+# @summary
+#   Install InputFieldTrap
 #
 class trac::config::inputfieldtrap {
 

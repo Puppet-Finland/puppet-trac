@@ -1,7 +1,6 @@
 #
-# == Class: trac::params
-#
-# Defines some variables based on the operating system
+# @summary
+#   Defines some variables based on the operating system
 #
 class trac::params {
 

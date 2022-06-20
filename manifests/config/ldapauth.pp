@@ -1,7 +1,6 @@
 #
-# == Class: trac::config::ldapauth
-#
-# Configure LDAP authentication for Trac projects
+# @summary
+#   Configure LDAP authentication for Trac projects
 #
 class trac::config::ldapauth
 (

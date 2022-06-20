@@ -1,54 +1,41 @@
 #
-# == Class: trac
+# @summary
+#   Setup a Trac server that uses postgresql as the database backend and which is 
+#   hosted by Apache. LDAP authentication can be configured optionally.
 #
-# Setup a Trac server that uses postgresql as the database backend and which is 
-# hosted by Apache. LDAP authentication can be configured optionally.
-#
-# == Parameters
-#
-# [*manage*]
+# @param manage
 #   Manage Trac with Puppet. Valid values are true (default) and false.
-# [*branch*]
+# @param branch
 #   Name of the Trac branch to install. A list is available here:
 # 
 #   <http://svn.edgewall.org/repos/trac/branches>
 #
-# [*db_backend*]
+# @param db_backend
 #   Name of the database backend to use. Defaults to 'postgresql', which is also 
 #   the only backend currently supported by this module.
-# [*db_name*]
+# @param db_name
 #   Name of the database used by Trac. Defaults to 'trac'.
-# [*db_user_name*]
+# @param db_user_name
 #   Database user for access the Trac database. Defaults to 'tracuser'.
-# [*db_user_password*]
+# @param db_user_password
 #   Password for the database user.
-# [*use_ldap*]
+# @param use_ldap
 #   Whether to authenticate from LDAP or not. Valid values are true (default) 
 #   and false.
-# [*ldap_host*]
+# @param ldap_host
 #   LDAP server's IP address or hostname.
-# [*ldap_port*]
+# @param ldap_port
 #   LDAP server's port.
-# [*ldap_binddn*]
+# @param ldap_binddn
 #   The DN to use for binding to the directory.
-# [*ldap_bindpw*]
+# @param ldap_bindpw
 #   The password for binding to the directory.
-# [*ldap_user_basedn*]
+# @param ldap_user_basedn
 #   The user search base.
-# [*ldap_dn_attribute*]
+# @param ldap_dn_attribute
 #   The attribute used to distinguish between different users.
-# [*projects*]
+# @param projects
 #   A hash of trac::project resources to realize.
-#
-# == Authors
-#
-# Samuli Seppänen <samuli.seppanen@gmail.com>
-#
-# Samuli Seppänen <samuli@openvpn.net>
-#
-# == License
-#
-# BSD-license. See file LICENSE for details.
 #
 class trac
 (

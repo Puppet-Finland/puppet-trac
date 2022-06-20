@@ -1,7 +1,6 @@
 #
-# == Class: trac::config::tocmacro
-#
-# Install TocMacro plugin
+# @summary
+#   Install TocMacro plugin
 #
 class trac::config::tocmacro {
     exec { 'trac-easy_install-tocmacro':

@@ -1,8 +1,7 @@
 #
-# == Class: trac::prequisites
-#
-# Setup various Trac's prequisites. These would not be needed if we installed 
-# Trac from operating system packages, which unfortunately tend to be obsolete.
+# @summary
+#   Setup various Trac's prequisites. These would not be needed if we installed 
+#   Trac from operating system packages, which unfortunately tend to be obsolete.
 #
 class trac::prequisites
 (

@@ -1,7 +1,6 @@
 #
-# == Class trac::config::xmlrpc
-#
-# Setup Trac (Bayesian) spam-filter
+# @summary
+#   Setup Trac (Bayesian) spam-filter
 #
 class trac::config::spamfilter
 {

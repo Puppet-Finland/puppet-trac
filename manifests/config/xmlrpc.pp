@@ -1,7 +1,6 @@
 #
-# == Class trac::config::xmlrpc
-#
-# Setup Trac XML-RPC plugin and limit it's usage
+# @summary
+#   Setup Trac XML-RPC plugin and limit it's usage
 #
 class trac::config::xmlrpc
 (

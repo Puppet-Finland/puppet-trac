@@ -1,7 +1,6 @@
 #
-# == Class: trac::install
-#
-# Install Trac using easy_install. By default Trac will go to /usr/local.
+# @summary
+#   Install Trac using easy_install. By default Trac will go to /usr/local.
 #
 class trac::install
 (

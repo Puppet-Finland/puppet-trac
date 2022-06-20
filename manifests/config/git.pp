@@ -1,7 +1,6 @@
 #
-# == Class: trac::config::git
-#
-# Install TracGit plugin
+# @summary
+#   Install TracGit plugin
 #
 class trac::config::git {
     exec { 'trac-easy_install-git':

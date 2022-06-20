@@ -1,8 +1,7 @@
 #
-# == Class: trac::config::apache2
-#
-# Basic configuration of Apache2 for hosting Trac. This does not include 
-# per-project settings or optional LDAP settings.
+# @summary
+#   Basic configuration of Apache2 for hosting Trac. This does not include 
+#   per-project settings or optional LDAP settings.
 #
 class trac::config::apache2 {
 

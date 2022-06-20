@@ -1,7 +1,6 @@
 #
-# == Class: trac::absent
-#
-# Remove obsolete Trac configurations
+# @summary
+#   Remove obsolete Trac configurations
 #
 class trac::absent {
 

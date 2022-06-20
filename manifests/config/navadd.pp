@@ -1,7 +1,6 @@
 #
-# == Class: trac::config::navadd
-#
-# Install TracNavadd plugin
+# @summary
+#   Install TracNavadd plugin
 #
 class trac::config::navadd {
 

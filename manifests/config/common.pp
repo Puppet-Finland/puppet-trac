@@ -1,7 +1,6 @@
 #
-# == Class: trac::config::common
-#
-# Setup the project area under which each individual project is placed
+# @summary
+#   Setup the project area under which each individual project is placed
 #
 class trac::config::common {
 
