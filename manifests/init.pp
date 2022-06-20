@@ -37,60 +37,56 @@
 # @param projects
 #   A hash of trac::project resources to realize.
 #
-class trac
-(
-    String             $branch,
-    String             $db_user_password,
-    Boolean            $manage = true,
-    Enum['postgresql'] $db_backend = 'postgresql',
-    String             $db_name = 'trac',
-    String             $db_user_name = 'tracuser',
-    Boolean            $use_ldap = true,
-    Optional[String]   $ldap_host = undef,
-    Optional[Variant[Integer,String]]  $ldap_port = undef,
-    Optional[String]   $ldap_binddn = undef,
-    Optional[String]   $ldap_bindpw = undef,
-    Optional[String]   $ldap_user_basedn = undef,
-    Optional[String]   $ldap_dn_attribute = undef,
-    Hash               $projects = {}
-)
-{
+class trac (
+  String             $branch,
+  String             $db_user_password,
+  Boolean            $manage = true,
+  Enum['postgresql'] $db_backend = 'postgresql',
+  String             $db_name = 'trac',
+  String             $db_user_name = 'tracuser',
+  Boolean            $use_ldap = true,
+  Optional[String]   $ldap_host = undef,
+  Optional[Variant[Integer,String]]  $ldap_port = undef,
+  Optional[String]   $ldap_binddn = undef,
+  Optional[String]   $ldap_bindpw = undef,
+  Optional[String]   $ldap_user_basedn = undef,
+  Optional[String]   $ldap_dn_attribute = undef,
+  Hash               $projects = {}
+) {
+  if $manage {
+    include trac::absent
 
-if $manage {
-
-    include ::trac::absent
-
-    class { '::trac::prequisites':
-        db_backend => $db_backend,
+    class { 'trac::prequisites':
+      db_backend => $db_backend,
     }
 
-    class { '::trac::install':
-        branch => $branch,
+    class { 'trac::install':
+      branch => $branch,
     }
 
-    include ::trac::config::common
-    include ::trac::config::apache2
+    include trac::config::common
+    include trac::config::apache2
 
     # Database settings
     if $db_backend == 'postgresql' {
-        class { '::trac::config::postgresql':
-            db_name          => $db_name,
-            db_user_name     => $db_user_name,
-            db_user_password => $db_user_password,
-        }
+      class { 'trac::config::postgresql':
+        db_name          => $db_name,
+        db_user_name     => $db_user_name,
+        db_user_password => $db_user_password,
+      }
     }
 
     if $use_ldap {
-        class { '::trac::config::ldapauth':
-            ldap_host         => $ldap_host,
-            ldap_port         => $ldap_port,
-            ldap_binddn       => $ldap_binddn,
-            ldap_bindpw       => $ldap_bindpw,
-            ldap_user_basedn  => $ldap_user_basedn,
-            ldap_dn_attribute => $ldap_dn_attribute,
-        }
+      class { 'trac::config::ldapauth':
+        ldap_host         => $ldap_host,
+        ldap_port         => $ldap_port,
+        ldap_binddn       => $ldap_binddn,
+        ldap_bindpw       => $ldap_bindpw,
+        ldap_user_basedn  => $ldap_user_basedn,
+        ldap_dn_attribute => $ldap_dn_attribute,
+      }
     }
 
     create_resources('trac::project', $projects)
-}
+  }
 }
