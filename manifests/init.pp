@@ -54,38 +54,38 @@ class trac (
   Hash               $projects = {}
 ) {
   if $manage {
-    include trac::absent
+    #include trac::absent
 
-    class { 'trac::prequisites':
-      db_backend => $db_backend,
-    }
+    #class { 'trac::prequisites':
+    #  db_backend => $db_backend,
+    #}
 
-    class { 'trac::install':
-      branch => $branch,
-    }
+    #class { 'trac::install':
+    #  branch => $branch,
+    #}
 
-    include trac::config::common
-    include trac::config::apache2
+    #include trac::config::common
+    #include trac::config::apache2
 
-    # Database settings
-    if $db_backend == 'postgresql' {
-      class { 'trac::config::postgresql':
-        db_name          => $db_name,
-        db_user_name     => $db_user_name,
-        db_user_password => $db_user_password,
-      }
-    }
+    ## Database settings
+    #if $db_backend == 'postgresql' {
+    #  class { 'trac::config::postgresql':
+    #    db_name          => $db_name,
+    #    db_user_name     => $db_user_name,
+    #    db_user_password => $db_user_password,
+    #  }
+    #}
 
-    if $use_ldap {
-      class { 'trac::config::ldapauth':
-        ldap_host         => $ldap_host,
-        ldap_port         => $ldap_port,
-        ldap_binddn       => $ldap_binddn,
-        ldap_bindpw       => $ldap_bindpw,
-        ldap_user_basedn  => $ldap_user_basedn,
-        ldap_dn_attribute => $ldap_dn_attribute,
-      }
-    }
+    #if $use_ldap {
+    #  class { 'trac::config::ldapauth':
+    #    ldap_host         => $ldap_host,
+    #    ldap_port         => $ldap_port,
+    #    ldap_binddn       => $ldap_binddn,
+    #    ldap_bindpw       => $ldap_bindpw,
+    #    ldap_user_basedn  => $ldap_user_basedn,
+    #    ldap_dn_attribute => $ldap_dn_attribute,
+    #  }
+    #}
 
     create_resources('trac::project', $projects)
   }
