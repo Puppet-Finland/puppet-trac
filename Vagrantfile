@@ -3,8 +3,8 @@
 Vagrant.configure("2") do |config|
 
   config.vm.define "trac" do |box|
-    box.vm.box = "generic/ubuntu2004"
-    box.vm.box_version = "4.0.2"
+    box.vm.box = "ubuntu/focal64"
+    box.vm.box_version = "20220511.0.0"
     box.vm.hostname = 'trac.vagrant.example.lan'
     box.vm.provider 'virtualbox' do |vb|
       vb.gui = false
