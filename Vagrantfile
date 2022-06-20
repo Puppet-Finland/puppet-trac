@@ -1,23 +1,25 @@
 # -*- mode: ruby -*-
-# vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
 
   config.vm.define "trac" do |box|
-    box.vm.box = "ubuntu/xenial64"
-    box.vm.box_version = "20171118.0.0"
-    box.vm.hostname = "trac.local"
-    box.vm.network "private_network", ip: "192.168.18.100"
-    box.vm.network "forwarded_port", guest: 80, host: 8080
-    box.vm.network "forwarded_port", guest: 443, host: 8443
-    box.vm.provision "shell" do |s|
-      s.path = "vagrant/prepare.sh"
-      s.args = "trac"
-    end
-    box.vm.provision "shell", inline: "puppet apply --modulepath /home/ubuntu/modules /vagrant/vagrant/trac.pp"
-    box.vm.provider "virtualbox" do |vb|
+    box.vm.box = "generic/ubuntu2004"
+    box.vm.box_version = "4.0.2"
+    box.vm.hostname = 'trac.vagrant.example.lan'
+    box.vm.provider 'virtualbox' do |vb|
       vb.gui = false
-      vb.memory = 1024
+      vb.memory = 1280
+      vb.customize ["modifyvm", :id, "--ioapic", "on"]
+      vb.customize ["modifyvm", :id, "--hpet", "on"]
     end
+    box.vm.network "private_network", ip: "192.168.59.103"
+    box.vm.provision "shell", path: "vagrant/common.sh"
+    box.vm.provision "shell", inline: "/usr/bin/apt-get update"
+    box.vm.provision "shell",
+      inline: "/opt/puppetlabs/bin/puppet apply /vagrant/vagrant/hosts.pp --modulepath=/vagrant/modules",
+      env: {  'FACTER_my_host': 'trac.vagrant.example.lan',
+              'FACTER_my_ip': '192.168.59.103' }
+    box.vm.provision "shell",
+      inline: "/opt/puppetlabs/bin/puppet apply /vagrant/vagrant/trac.pp --modulepath=/vagrant/modules"
   end
 end
