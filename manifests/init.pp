@@ -46,7 +46,7 @@ class trac (
   String             $db_user_name = 'tracuser',
   Boolean            $use_ldap = true,
   Optional[String]   $ldap_host = undef,
-  Optional[Variant[Integer,String]]  $ldap_port = undef,
+  Optional[Integer]  $ldap_port = undef,
   Optional[String]   $ldap_binddn = undef,
   Optional[String]   $ldap_bindpw = undef,
   Optional[String]   $ldap_user_basedn = undef,
