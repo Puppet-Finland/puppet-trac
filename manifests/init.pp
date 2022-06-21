@@ -54,7 +54,7 @@ class trac (
   Hash               $projects = {}
 ) {
   if $manage {
-    #class { 'trac::prequisites':
+    #class { 'trac::prerequisites':
     #  db_backend => $db_backend,
     #}
 

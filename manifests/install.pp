@@ -15,6 +15,6 @@ class trac::install
     # using easy_install.
     creates => '/usr/local/bin/trac-admin',
     path    => ['/usr/local/bin', '/usr/bin'],
-    require => [Class['trac::prequisites'], Class['python::setuptools']],
+    require => [Class['trac::prerequisites'], Class['python::setuptools']],
   }
 }
