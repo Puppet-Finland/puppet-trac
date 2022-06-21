@@ -5,16 +5,16 @@
 #
 class trac::prerequisites
 (
-    $db_backend
+  Enum['postgresql'] $db_backend = 'postgresql',
 )
 {
 
-    include ::apache2
-    include ::apache2::config::wsgi
+  include ::apache2
+  include ::apache2::config::wsgi
 
-    # Extra prerequisites if we chose to use postgresql
-    if $db_backend == 'postgresql' {
-        include ::pf_postgresql
-        include ::python::psycopg2
-    }
+  # Extra prerequisites if we chose to use postgresql
+  if $db_backend == 'postgresql' {
+    include ::pf_postgresql
+    include ::python::psycopg2
+  }
 }
